@@ -15,7 +15,7 @@ Using the extension options here:
 To install:
 ```sh
 git clone https://github.com/sohailsomani/chrome_custom_prefix_in_titlebar
-cd chrome_ext_profile_in_titlebar
+cd chrome_custom_prefix_in_titlebar
 npm install
 npm run build
 ```

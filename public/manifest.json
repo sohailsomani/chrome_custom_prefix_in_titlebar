@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
 
-  "name": "Chrome Extension TypeScript Starter",
-  "description": "Chrome Extension, TypeScript, Visual Studio Code",
+  "name": "Add a user-defined prefix to each tab",
+  "description": "Used primarily to differentiate windows between profiles",
   "version": "1.0",
 
   "options_ui": {
@@ -27,7 +27,8 @@
   },
 
   "permissions": [
-    "storage",
-    "<all_urls>"
+      "tabs",
+      "storage",
+      "<all_urls>"
   ]
 }

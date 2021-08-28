@@ -1,70 +1,34 @@
-# Chrome Extension TypeScript Starter
+A Chrome plugin to add a user defined prefix to each tab, helps to differentiate
+profiles and also organize profiles by desktop using a script (which is what I
+use it for).
 
-![build](https://github.com/chibat/chrome-extension-typescript-starter/workflows/build/badge.svg)
+Unfortunately, there is no Chrome API to get the user profile, so this is the
+next best thing. For example, in the screenshot below, I have configured the
+prefix "SOH":
 
-Chrome Extension, TypeScript and Visual Studio Code
+![screenshot](./screenshot.png)
 
-## Prerequisites
+Using the extension options here:
 
-* [node + npm](https://nodejs.org/) (Current Version)
+![options](./options.png)
 
-## Option
-
-* [Visual Studio Code](https://code.visualstudio.com/)
-
-## Includes the following
-
-* TypeScript
-* Webpack
-* React
-* Jest
-* Example Code
-    * Chrome Storage
-    * Options Version 2
-    * content script
-    * count up badge number
-    * background
-
-## Project Structure
-
-* src/typescript: TypeScript source files
-* src/assets: static files
-* dist: Chrome Extension directory
-* dist/js: Generated JavaScript files
-
-## Setup
-
-```
+To install:
+```sh
+git clone https://github.com/sohailsomani/chrome_custom_prefix_in_titlebar
+cd chrome_ext_profile_in_titlebar
 npm install
-```
-
-## Import as Visual Studio Code project
-
-...
-
-## Build
-
-```
 npm run build
 ```
 
-## Build in watch mode
+This creates a `dist` directory.
 
-### terminal
+Next:
+* Go to `chrome://extensions` 
+* Enable developer mode
+* Click "Load unpacked extension"
+* Navigate to the above `dist` directory
+* Set the prefix as desired from the extension options 
+* Enjoy
 
-```
-npm run watch
-```
-
-### Visual Studio Code
-
-Run watch mode.
-
-type `Ctrl + Shift + B`
-
-## Load extension to chrome
-
-Load `dist` directory
-
-## Test
-`npx jest` or `npm run test`
+**NOTE**: You will have to either reload all your tabs or restart your browser
+to get the prefix applied.

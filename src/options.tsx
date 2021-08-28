@@ -2,21 +2,21 @@ import React, { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 
 const Options = () => {
-  const [color, setColor] = useState<string>();
   const [status, setStatus] = useState<string>();
-  const [like, setLike] = useState<boolean>();
+  const [prefix, setPrefix] = useState<string>();
+  const [separator, setSeparator] = useState<string>();
 
   useEffect(() => {
     // Restores select box and checkbox state using the preferences
     // stored in chrome.storage.
     chrome.storage.sync.get(
       {
-        favoriteColor: "red",
-        likesColor: true,
+        prefix: "SET PREFIX",
+        separator: "-"
       },
       (items) => {
-        setColor(items.favoriteColor);
-        setLike(items.likesColor);
+        setPrefix(items.prefix);
+        setSeparator(items.separator);
       }
     );
   }, []);
@@ -25,8 +25,8 @@ const Options = () => {
     // Saves options to chrome.storage.sync.
     chrome.storage.sync.set(
       {
-        favoriteColor: color,
-        likesColor: like,
+        prefix: prefix,
+        separator: separator
       },
       () => {
         // Update status to let user know options were saved.
@@ -39,28 +39,28 @@ const Options = () => {
     );
   };
 
+  const handlePrefixChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    setPrefix(event.target.value);
+  };
+
+  const handleSeparatorChange = (event:React.ChangeEvent<HTMLInputElement>) => {
+    setSeparator(event.target.value);
+  };
+
   return (
     <>
       <div>
-        Favorite color:&nbsp;
-        <select
-          value={color}
-          onChange={(event) => setColor(event.target.value)}
-        >
-          <option value="red">red</option>
-          <option value="green">green</option>
-          <option value="blue">blue</option>
-          <option value="yellow">yellow</option>
-        </select>
+        <label>
+          Prefix:
+          <input type="text" name="prefix" value={prefix} onChange={handlePrefixChange}>
+          </input>
+        </label>
       </div>
       <div>
         <label>
-          <input
-            type="checkbox"
-            checked={like}
-            onChange={(event) => setLike(event.target.checked)}
-          />
-          I like colors.
+          Separator:
+          <input type="text" name="separator" value={separator} onChange={handleSeparatorChange}>
+          </input>
         </label>
       </div>
       <div>{status}</div>
